@@ -23,6 +23,7 @@ Result:
 ```
 {
 	"date": [2017, 12, 15],
+	"trainCategory": "ICE",
 	"trainNumber": "592",
 	"planned": {
 		"arrival": [2017, 12, 15, 20, 08]
