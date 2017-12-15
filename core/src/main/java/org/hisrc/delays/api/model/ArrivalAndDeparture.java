@@ -1,23 +1,23 @@
 package org.hisrc.delays.api.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class ArrivalAndDeparture {
 
-	private final LocalDate arrival;
-	private final LocalDate departure;
+	private final LocalDateTime arrival;
+	private final LocalDateTime departure;
 
-	public ArrivalAndDeparture(LocalDate arrival, LocalDate departure) {
+	public ArrivalAndDeparture(LocalDateTime arrival, LocalDateTime departure) {
 		this.arrival = arrival;
 		this.departure = departure;
 	}
 
-	public LocalDate getArrival() {
+	public LocalDateTime getArrival() {
 		return arrival;
 	}
 
-	public LocalDate getDeparture() {
+	public LocalDateTime getDeparture() {
 		return departure;
 	}
 

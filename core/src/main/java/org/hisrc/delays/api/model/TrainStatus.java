@@ -9,7 +9,7 @@ public class TrainStatus {
 	private final String trainCategory;
 	private final String trainNumber;
 	private final String stationName;
-	private final String eva;
+	private final String stationEvaNumber;
 	private final ArrivalAndDeparture planned;
 	private final ArrivalAndDeparture changed;
 
@@ -19,7 +19,7 @@ public class TrainStatus {
 		this.trainCategory = trainCategory;
 		this.trainNumber = trainNumber;
 		this.stationName = stationName;
-		this.eva = eva;
+		this.stationEvaNumber = eva;
 		this.planned = planned;
 		this.changed = changed;
 	}
@@ -41,7 +41,7 @@ public class TrainStatus {
 	}
 
 	public String getEva() {
-		return eva;
+		return stationEvaNumber;
 	}
 
 	public ArrivalAndDeparture getPlanned() {
@@ -54,7 +54,7 @@ public class TrainStatus {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(date, trainCategory, trainNumber, stationName, eva, planned, changed);
+		return Objects.hash(date, trainCategory, trainNumber, stationName, stationEvaNumber, planned, changed);
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class TrainStatus {
 		TrainStatus that = (TrainStatus) object;
 		return Objects.equals(this.date, that.date) && Objects.equals(this.trainCategory, that.trainCategory)
 				&& Objects.equals(this.trainNumber, that.trainNumber)
-				&& Objects.equals(this.stationName, that.stationName) && Objects.equals(this.eva, that.eva)
+				&& Objects.equals(this.stationName, that.stationName) && Objects.equals(this.stationEvaNumber, that.stationEvaNumber)
 				&& Objects.equals(this.planned, that.planned) && Objects.equals(this.changed, that.changed);
 	}
 

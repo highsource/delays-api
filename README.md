@@ -25,6 +25,8 @@ Result:
 	"date": [2017, 12, 15],
 	"trainCategory": "ICE",
 	"trainNumber": "592",
+	"stationEvaNumber": "8000105",
+	"stationName": "Frankfurt(Main)Hbf",
 	"planned": {
 		"arrival": [2017, 12, 15, 20, 08]
 		"departure": [2017, 12, 15, 20, 14]
