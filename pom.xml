@@ -22,8 +22,8 @@
 	</scm>
 	<modules>
 		<module>schema</module>
-		<!--module>core</module>
-		<module>api</module>
+		<module>core</module>
+		<!--module>api</module>
 		<module>dist</module-->
 	</modules>
 	<profiles>
