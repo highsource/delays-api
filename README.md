@@ -29,7 +29,7 @@ Result:
 		"arrival": [2017, 12, 15, 20, 08]
 		"departure": [2017, 12, 15, 20, 14]
 	},
-	"current": {
+	"changed": {
 		"arrival": [2017, 12, 15, 22, 36]
 		"departure": [2017, 12, 15, 22, 40]
 	}
