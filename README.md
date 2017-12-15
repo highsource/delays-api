@@ -23,7 +23,7 @@ Result:
 ```
 {
 	"date": [2017, 12, 15],
-	"trainNumber": "76",
+	"trainNumber": "592",
 	"planned": {
 		"arrival": [2017, 12, 15, 20, 08]
 		"departure": [2017, 12, 15, 20, 14]
