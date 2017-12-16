@@ -23,6 +23,7 @@
 	<modules>
 		<module>schema</module>
 		<module>core</module>
+		<module>lambda</module>
 		<!--module>api</module>
 		<module>dist</module-->
 	</modules>
@@ -43,7 +44,6 @@
 	</dependencies>
 	<properties>
 		<jackson.version>2.7.4</jackson.version>
-		<spring-boot.version>1.4.2.RELEASE</spring-boot.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -57,7 +57,11 @@
 				<artifactId>assertj-core</artifactId>
 				<version>3.8.0</version>
 			</dependency>
-
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
 
 			<!--dependency>
 				<groupId>org.hisrc.delays-api</groupId>

@@ -6,7 +6,7 @@ API to access Deutsche Bahn delays per train/station.
 
 You can access the API under the following URL:
 
-`http://<base-url>/delay/${year}/${month}/${day}/${trainNumber}/${stationEvaNumber}`
+`https://4m0gbu7t6j.execute-api.eu-central-1.amazonaws.com/prod/${year}/${month}/${day}/${trainNumber}/${stationEvaNumber}`
 
 Path variables:
 
@@ -16,7 +16,7 @@ Path variables:
 
 Example:
 
-`http://<base-url>/delay/2017/12/15/592/8000105` - gets the delay of ICE 592 on 15 December 2017 in Frankfurt.
+`https://4m0gbu7t6j.execute-api.eu-central-1.amazonaws.com/prod/2017/12/15/592/8000105` - gets the delay of ICE 592 on 15 December 2017 in Frankfurt.
 
 Result:
 
