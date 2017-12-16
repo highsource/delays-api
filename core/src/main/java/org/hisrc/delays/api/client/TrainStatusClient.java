@@ -5,7 +5,12 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -118,13 +123,32 @@ public class TrainStatusClient {
 				URL changedURL = new URL(FCHG_URL_TEMPLATE.replaceAll("\\$\\{stationEvaNumber\\}", stationEvaNumber));
 				Unmarshaller unmarshaller = context.createUnmarshaller();
 
+				System.out.println(System.currentTimeMillis() + " Unmarshalling [" + changedURL + "].");
 				@SuppressWarnings("unchecked")
 				JAXBElement<Timetable> timetableElement = (JAXBElement<Timetable>) unmarshaller.unmarshal(changedURL);
+				System.out.println(System.currentTimeMillis() + " Finished unmarshalling [" + changedURL + "].");
 				Timetable value = timetableElement.getValue();
 				
 				for (TimetableStop timetableStop : value.getS()) {
 					if (Objects.equals(plannedTimetableStop.getId(), timetableStop.getId())) {
 						timetableStop.setTl(plannedTimetableStop.getTl());
+						
+						if (timetableStop.getAr() == null) {
+							timetableStop.setAr(new Event());
+						}
+						
+						if (timetableStop.getAr().getPt() == null)
+						{
+							timetableStop.getAr().setPt(plannedTimetableStop.getAr().getPt());
+						}
+						if (timetableStop.getDp() == null) {
+							timetableStop.setDp(new Event());
+						}
+						
+						if (timetableStop.getDp().getPt() == null)
+						{
+							timetableStop.getDp().setPt(plannedTimetableStop.getDp().getPt());
+						}
 						return timetableStop;
 					}
 				}
@@ -137,8 +161,12 @@ public class TrainStatusClient {
 
 	public TimetableStop findPlannedTimetableStop(LocalDate date, String trainNumber, String stationEvaNumber) throws IOException {
 		final String dateString = yyMMdd.format(date);
-
-		for (int hour = 0; hour < 24; hour++) {
+		
+		int currentHour = LocalDateTime.now().getHour();
+		
+		List<Integer> hours = IntStream.concat(IntStream.range(currentHour, 24),
+				IntStream.range(0, currentHour)).boxed().collect(Collectors.toList());
+		for (int hour : hours) {
 
 			try {
 				final String hourString = String.format("%02d", hour);
@@ -148,14 +176,23 @@ public class TrainStatusClient {
 
 				Unmarshaller unmarshaller = context.createUnmarshaller();
 
+				System.out.println(System.currentTimeMillis() + " Unmarshalling [" + plannedURL + "].");
 				@SuppressWarnings("unchecked")
 				JAXBElement<Timetable> timetableElement = (JAXBElement<Timetable>) unmarshaller.unmarshal(plannedURL);
+				System.out.println(System.currentTimeMillis() + " Finished unmarshalling [" + plannedURL + "].");
 				Timetable timetable = timetableElement.getValue();
 				
 				for (TimetableStop timetableStop : timetable.getS()) {
 					
 					if (timetableStop.getTl() != null &&
 							trainNumber.equals(timetableStop.getTl().getN())) {
+						if (timetableStop.getAr() == null) {
+							timetableStop.setAr(new Event());
+						}
+						if (timetableStop.getDp() == null) {
+							timetableStop.setDp(new Event());
+						}
+						
 						// This is a bloody hack
 						timetableStop.getTl().setO(timetable.getStation());
 						return timetableStop;
